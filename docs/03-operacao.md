@@ -99,7 +99,7 @@ jobs:
     steps:
       - uses: actions/checkout@<CHECKOUT_SHA>
       - run: npm ci --ignore-scripts
-      - uses: goncalofrankefranco/knipci@6a039f5291e94e9b848cd4e4f56b56dd4a31bd09
+      - uses: goncalofrankefranco/knipci@93468ad6ca68839ad25ae1fd1be3ba0ca49da22e
         with:
           command: scan
           format: markdown
@@ -125,7 +125,7 @@ jobs:
     steps:
       - uses: actions/checkout@<CHECKOUT_SHA>
       - run: npm ci --ignore-scripts
-      - uses: goncalofrankefranco/knipci@6a039f5291e94e9b848cd4e4f56b56dd4a31bd09
+      - uses: goncalofrankefranco/knipci@93468ad6ca68839ad25ae1fd1be3ba0ca49da22e
         with:
           command: fix
           apply: 'true'
