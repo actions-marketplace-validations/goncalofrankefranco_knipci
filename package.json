@@ -1,0 +1,36 @@
+{
+  "name": "knipci",
+  "version": "0.1.0",
+  "description": "Safe dependency-cleanup Pull Requests powered by Knip",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "src",
+    "action.yml",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goncalofrankefranco/knipci.git"
+  },
+  "bugs": {
+    "url": "https://github.com/goncalofrankefranco/knipci/issues"
+  },
+  "homepage": "https://github.com/goncalofrankefranco/knipci#readme",
+  "bin": {
+    "knipci": "src/cli.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "lint": "node --check src/cli.js",
+    "start": "node src/cli.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "knip": "6.32.2"
+  }
+}

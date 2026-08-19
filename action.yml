@@ -1,0 +1,72 @@
+name: KnipCI
+description: Run KnipCI reports or validated dependency cleanup Pull Requests
+inputs:
+  command:
+    description: scan or fix
+    required: false
+    default: scan
+  format:
+    description: Output format for scan (json or markdown)
+    required: false
+    default: markdown
+  config:
+    description: Path to the KnipCI JSON configuration
+    required: false
+    default: .knipci.json
+  apply:
+    description: Apply a dependency fix instead of dry-running
+    required: false
+    default: 'false'
+  create-pr:
+    description: Push a branch and create or reuse a Pull Request
+    required: false
+    default: 'false'
+  build:
+    description: Build command to validate an applied fix
+    required: false
+    default: ''
+  test:
+    description: Test command to validate an applied fix
+    required: false
+    default: ''
+runs:
+  using: composite
+  steps:
+    - name: Install KnipCI dependencies
+      shell: bash
+      env:
+        ACTION_PATH: ${{ github.action_path }}
+      run: npm ci --ignore-scripts --prefix "$ACTION_PATH"
+    - name: Run KnipCI
+      shell: bash
+      env:
+        KNIPCI_COMMAND: ${{ inputs.command }}
+        KNIPCI_FORMAT: ${{ inputs.format }}
+        KNIPCI_CONFIG: ${{ inputs.config }}
+        KNIPCI_APPLY: ${{ inputs.apply }}
+        KNIPCI_CREATE_PR: ${{ inputs.create-pr }}
+        KNIPCI_BUILD: ${{ inputs.build }}
+        KNIPCI_TEST: ${{ inputs.test }}
+        ACTION_PATH: ${{ github.action_path }}
+      run: |
+        set -euo pipefail
+        args=("$KNIPCI_COMMAND" "--config" "$KNIPCI_CONFIG")
+        if [[ "$KNIPCI_COMMAND" == "scan" ]]; then
+          args+=("--format" "$KNIPCI_FORMAT")
+        fi
+        if [[ "$KNIPCI_APPLY" == "true" ]]; then
+          args+=("--apply")
+        fi
+        if [[ "$KNIPCI_CREATE_PR" == "true" ]]; then
+          args+=("--create-pr")
+        fi
+        if [[ -n "$KNIPCI_BUILD" ]]; then
+          args+=("--build" "$KNIPCI_BUILD")
+        fi
+        if [[ -n "$KNIPCI_TEST" ]]; then
+          args+=("--test" "$KNIPCI_TEST")
+        fi
+        node "$ACTION_PATH/src/cli.js" "${args[@]}"
+branding:
+  icon: check-circle
+  color: blue

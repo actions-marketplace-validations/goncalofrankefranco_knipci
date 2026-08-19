@@ -1,0 +1,4 @@
+node_modules/
+coverage/
+.knipci-report.json
+*.log
