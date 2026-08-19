@@ -80,7 +80,7 @@ Create `.knipci.json` when the defaults do not match the repository:
 
 ## GitHub Actions
 
-Use a full commit SHA when consuming the Action. Replace `<KNIPCI_SHA>` with the reviewed commit you want to run:
+The example below pins the Action to the reviewed public release commit:
 
 ```yaml
 name: KnipCI analysis
@@ -98,7 +98,7 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
       - run: npm ci --ignore-scripts
-      - uses: goncalofrankefranco/knipci@<KNIPCI_SHA>
+      - uses: goncalofrankefranco/knipci@6a039f5291e94e9b848cd4e4f56b56dd4a31bd09
         with:
           command: scan
           format: markdown

@@ -99,7 +99,7 @@ jobs:
     steps:
       - uses: actions/checkout@<CHECKOUT_SHA>
       - run: npm ci --ignore-scripts
-      - uses: goncalofrankefranco/knipci@<KNIPCI_SHA>
+      - uses: goncalofrankefranco/knipci@6a039f5291e94e9b848cd4e4f56b56dd4a31bd09
         with:
           command: scan
           format: markdown
@@ -125,7 +125,7 @@ jobs:
     steps:
       - uses: actions/checkout@<CHECKOUT_SHA>
       - run: npm ci --ignore-scripts
-      - uses: goncalofrankefranco/knipci@<KNIPCI_SHA>
+      - uses: goncalofrankefranco/knipci@6a039f5291e94e9b848cd4e4f56b56dd4a31bd09
         with:
           command: fix
           apply: 'true'
@@ -134,7 +134,7 @@ jobs:
           test: npm test
 ```
 
-Substitua `<KNIPCI_SHA>` por um commit revisado. A Action pode ser usada diretamente do repositório público; o Marketplace não é necessário para o MVP.
+A Action pode ser usada diretamente do repositório público; o Marketplace não é necessário para o MVP. Atualize o SHA quando adotar uma versão revisada.
 
 ## 3.6 Diagnóstico rápido
 
