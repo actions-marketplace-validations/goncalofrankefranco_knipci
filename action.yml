@@ -1,6 +1,11 @@
 name: KnipCI
+author: KnipCI contributors
 description: Run KnipCI reports or validated dependency cleanup Pull Requests
 inputs:
+  token:
+    description: GitHub token used when creating a Pull Request
+    required: false
+    default: ${{ github.token }}
   command:
     description: scan or fix
     required: false
@@ -40,6 +45,7 @@ runs:
     - name: Run KnipCI
       shell: bash
       env:
+        GITHUB_TOKEN: ${{ inputs.token }}
         KNIPCI_COMMAND: ${{ inputs.command }}
         KNIPCI_FORMAT: ${{ inputs.format }}
         KNIPCI_CONFIG: ${{ inputs.config }}

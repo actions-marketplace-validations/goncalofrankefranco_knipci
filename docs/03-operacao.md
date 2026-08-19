@@ -134,6 +134,8 @@ jobs:
           test: npm test
 ```
 
+O input `token` da Action usa `${{ github.token }}` por padrão. Não é necessário criar um secret adicional; mantenha as permissões `contents: write` e `pull-requests: write` somente nesse workflow confiável.
+
 A Action pode ser usada diretamente do repositório público; o Marketplace não é necessário para o MVP. Atualize o SHA quando adotar uma versão revisada.
 
 ## 3.6 Diagnóstico rápido

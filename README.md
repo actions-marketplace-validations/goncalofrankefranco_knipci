@@ -61,6 +61,8 @@ node src/cli.js fix --apply --create-pr
 
 `scan` never changes files. `fix` requires `--apply` before changing files. `--create-pr` additionally requires a clean Git workspace, an initial commit, and GitHub environment variables with permission to push a branch and open a Pull Request.
 
+When used as an Action, the optional `token` input defaults to `${{ github.token }}`. Grant `contents: write` and `pull-requests: write` only in the trusted auto-fix workflow.
+
 ## Configuration
 
 Create `.knipci.json` when the defaults do not match the repository:
